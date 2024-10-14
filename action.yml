@@ -36,6 +36,10 @@ outputs:
 runs:
   using: "composite"
   steps:
+    - if: ${{ github.ImageOS == 'Ubuntu24' }}
+      uses: actions/setup-python@v5
+      with:
+      python-version: '3.x'
     - id: install
       run: ${{ github.action_path }}/install.sh "${{ inputs.version }}" "${{ inputs.installed_path }}"
       shell: bash
